@@ -1,0 +1,68 @@
+.sidebarContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 220px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.logoContainer {
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+
+.navMiddle {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.navLinks {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+}
+
+.navLink {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #000;
+    text-decoration: none;
+    padding: 0.5rem 0;
+}
+
+.navLink:hover {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+.signedIn {
+    font-size: 0.9rem;
+    color: #666;
+    padding-bottom: 1rem;
+}
