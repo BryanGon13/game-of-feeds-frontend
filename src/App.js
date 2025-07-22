@@ -2,17 +2,23 @@ import React from 'react';
 import styles from './App.module.css';
 import NavBar from './components/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import { Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
     <div className={styles.App}>
       <NavBar />
-      {/* Main content goes here */}
-      <div style={{ marginLeft: '220px', padding: '30px' }}>
-        <h1>Welcome to Game of Feeds</h1>
-        <p>This is your main content area.</p>
-      </div>
-    </div>
+      <Container className={styles.Main}>
+        <Switch>
+          <Route exact path="/" render={() => <h1>Home Page</h1>} />
+          <Route exact path="/signin" render={() => <h1>Sign In!</h1>} />
+          <Route exact path="/signup" render={() => <h1>Sign Up!</h1>} />
+          <Route render={() => <p>Page not found</p>} />
+        </Switch>
+      </Container>
+
+    </div >
   );
 }
 
