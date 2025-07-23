@@ -1,20 +1,31 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import { Form, Button, Image, Col, Row, Container, Alert } from "react-bootstrap";
+
+import {
+    Form,
+    Button,
+    Image,
+    Col,
+    Row,
+    Container,
+    Alert,
+} from "react-bootstrap";
 import axios from "axios";
 
 const SignUpForm = () => {
     const [signUpData, setSignUpData] = useState({
-        username: '',
-        password1: '',
-        password2: '',
+        username: "",
+        password1: "",
+        password2: "",
     });
-
     const { username, password1, password2 } = signUpData;
+
     const [errors, setErrors] = useState({});
+
     const history = useHistory();
 
     const handleChange = (event) => {
@@ -27,31 +38,24 @@ const SignUpForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post(
-                'https://game-of-feeds-50ff6d853852.herokuapp.com/dj-rest-auth/registration/',
-                signUpData,
-                { withCredentials: true }
-            );
+            await axios.post("/dj-rest-auth/registration/", signUpData);
             history.push("/signin");
         } catch (err) {
-            console.error("Registration error:", err);
-            setErrors(err.response?.data || { non_field_errors: ["Something went wrong."] });
+            setErrors(err.response?.data);
         }
     };
 
     return (
         <Row className={styles.Row}>
             <Col className="my-auto py-2 p-md-2" md={6}>
-                <Container className={styles.FormCard}>
-                    <h1 className={`${styles.Header} text-muted`}>Sign up</h1>
-                    <hr />
-                    <Form.Text><h5>Welcome to Game of Feeds</h5></Form.Text>
+                <Container className={`${appStyles.Content} p-4 `}>
+                    <h1 className={styles.Header}>sign up</h1>
 
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="username">
                             <Form.Label className="d-none">username</Form.Label>
                             <Form.Control
-                                className={styles.InputFields}
+                                className={styles.Input}
                                 type="text"
                                 placeholder="Username"
                                 name="username"
@@ -59,14 +63,16 @@ const SignUpForm = () => {
                                 onChange={handleChange}
                             />
                         </Form.Group>
-                        {errors.username?.map((msg, idx) => (
-                            <Alert key={idx} variant="warning">{msg}</Alert>
+                        {errors.username?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
                         ))}
 
                         <Form.Group controlId="password1">
                             <Form.Label className="d-none">Password</Form.Label>
                             <Form.Control
-                                className={`${styles.InputFields} text-muted`}
+                                className={styles.Input}
                                 type="password"
                                 placeholder="Password"
                                 name="password1"
@@ -74,14 +80,16 @@ const SignUpForm = () => {
                                 onChange={handleChange}
                             />
                         </Form.Group>
-                        {errors.password1?.map((msg, idx) => (
-                            <Alert key={idx} variant="warning">{msg}</Alert>
+                        {errors.password1?.map((message, idx) => (
+                            <Alert key={idx} variant="warning">
+                                {message}
+                            </Alert>
                         ))}
 
                         <Form.Group controlId="password2">
                             <Form.Label className="d-none">Confirm password</Form.Label>
                             <Form.Control
-                                className={`${styles.InputFields} text-muted`}
+                                className={styles.Input}
                                 type="password"
                                 placeholder="Confirm password"
                                 name="password2"
@@ -89,33 +97,39 @@ const SignUpForm = () => {
                                 onChange={handleChange}
                             />
                         </Form.Group>
-                        {errors.password2?.map((msg, idx) => (
-                            <Alert key={idx} variant="warning">{msg}</Alert>
+                        {errors.password2?.map((message, idx) => (
+                            <Alert key={idx} variant="warning">
+                                {message}
+                            </Alert>
                         ))}
 
-                        <Button className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`} type="submit">
-                            Continue
+                        <Button
+                            className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
+                            type="submit"
+                        >
+                            Sign up
                         </Button>
-                        {errors.non_field_errors?.map((msg, idx) => (
-                            <Alert key={idx} variant="warning" className="mt-3">{msg}</Alert>
+                        {errors.non_field_errors?.map((message, idx) => (
+                            <Alert key={idx} variant="warning" className="mt-3">
+                                {message}
+                            </Alert>
                         ))}
                     </Form>
+                </Container>
 
-                    <hr />
-                    <h1 className={`${styles.Header} text-muted`}>Or</h1>
-
-                    <Container className={`mt-3 ${appStyles.Content}`}>
-                        <Link className={styles.Link} to="/signin">
-                            Already have an account? <span>Sign in here</span>
-                        </Link>
-                    </Container>
+                <Container className={`mt-3 ${appStyles.Content}`}>
+                    <Link className={styles.Link} to="/signin">
+                        Already have an account? <span>Sign in</span>
+                    </Link>
                 </Container>
             </Col>
-
-            <Col md={6} className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}>
+            <Col
+                md={6}
+                className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
+            >
                 <Image
-                    className={appStyles.FillerImage}
-                    src="https://codeinstitute.s3.amazonaws.com/AdvancedReact/hero2.jpg"
+                    className={`${appStyles.FillerImage}`}
+                    src={"https://codeinstitute.s3.amazonaws.com/AdvancedReact/hero2.jpg"}
                 />
             </Col>
         </Row>
