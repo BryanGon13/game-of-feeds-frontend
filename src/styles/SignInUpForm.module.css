@@ -1,0 +1,58 @@
+.Row {
+    height: calc(100vh - 81px);
+}
+
+.Input {
+    background: #ffffff;
+    border: 1px solid #f0f1f9;
+    box-sizing: border-box;
+    border-radius: 2px;
+    color: #7177a1;
+    text-align: center;
+    padding: 20px;
+}
+
+.FormCard {
+    background-color: white;
+    padding: 2rem 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+}
+
+.Header {
+    font-style: normal;
+    font-size: 16px;
+    text-align: center;
+}
+
+.InputFields {
+    background-color: #f2f2f2;
+}
+
+.Link {
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    margin: auto;
+    color: black;
+    border: none;
+}
+
+.Link span {
+    color: #2142b2;
+}
+
+.Container {
+    padding: 30px 10px;
+}
+
+.SignInCol {
+    height: 320px;
+}
+
+.SignUpCol {
+    height: 375px;
+}
