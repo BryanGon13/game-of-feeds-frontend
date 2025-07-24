@@ -1,4 +1,3 @@
-
 import styles from './App.module.css';
 import NavBar from './components/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,20 +6,24 @@ import { Route, Switch } from 'react-router-dom';
 import './api/axiosDefaults';
 import SignUpForm from './pages/auth/SignUpForm';
 import SignInForm from './pages/auth/SignInForm';
+import PostCreateForm from './pages/posts/PostCreateForm';
 
 
 function App() {
   return (
     <div className={styles.App}>
       <NavBar />
-      <Container className={styles.Main}>
-        <Switch>
-          <Route exact path="/" render={() => <h1>Home Page</h1>} />
-          <Route exact path="/signup" render={() => <SignUpForm />} />
-          <Route exact path="/signin" render={() => <SignInForm />} />
-          <Route render={() => <p>Page not found</p>} />
-        </Switch>
-      </Container>
+      <div className={styles.ContentWrapper}>
+        <Container className={styles.Main}>
+          <Switch>
+            <Route exact path="/" render={() => <h1>Home Page</h1>} />
+            <Route exact path="/signup" render={() => <SignUpForm />} />
+            <Route exact path="/signin" render={() => <SignInForm />} />
+            <Route exact path="/posts/create" render={() => <PostCreateForm />} />
+            <Route render={() => <p>Page not found</p>} />
+          </Switch>
+        </Container>
+      </div>
     </div >
   );
 }
