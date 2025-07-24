@@ -56,3 +56,17 @@
 .SignUpCol {
     height: 375px;
 }
+
+.SignUpCol {
+    background-color: transparent;
+    /* optional, can be customized */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.FillerImage {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}

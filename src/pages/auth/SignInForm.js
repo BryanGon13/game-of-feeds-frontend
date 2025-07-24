@@ -1,49 +1,27 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React from "react";
+
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Image from "react-bootstrap/Image";
+import Container from "react-bootstrap/Container";
+
+import { Link } from "react-router-dom";
+
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import { Form, Button, Image, Col, Row, Container, Alert } from "react-bootstrap";
-import axios from "axios";
 
-const SignUpForm = () => {
-    const [signUpData, setSignUpData] = useState({
-        username: '',
-        password1: '',
-        password2: '',
-    });
-
-    const { username, password1, password2 } = signUpData;
-    const [errors, setErrors] = useState({});
-    const history = useHistory();
-
-    const handleChange = (event) => {
-        setSignUpData({
-            ...signUpData,
-            [event.target.name]: event.target.value,
-        });
-    };
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            await axios.post(
-                'https://game-of-feeds-50ff6d853852.herokuapp.com/dj-rest-auth/registration/',
-                signUpData,
-                { withCredentials: true }
-            );
-            history.push("/signin");
-        } catch (err) {
-            console.error("Registration error:", err);
-            setErrors(err.response?.data || { non_field_errors: ["Something went wrong."] });
-        }
-    };
+function SignInForm() {
+    //   Add your component logic here
 
     return (
         <Row className={styles.Row}>
             <Col className="my-auto py-2 p-md-2" md={6}>
                 <Container className={styles.FormCard}>
-                    <h1 className={`${styles.Header} text-muted`}>Sign up</h1>
+                    <h1 className={`${styles.Header} text-muted`}>Sign in</h1>
                     <hr />
                     <Form.Text><h5>Welcome to Game of Feeds</h5></Form.Text>
 
@@ -78,23 +56,8 @@ const SignUpForm = () => {
                             <Alert key={idx} variant="warning">{msg}</Alert>
                         ))}
 
-                        <Form.Group controlId="password2">
-                            <Form.Label className="d-none">Confirm password</Form.Label>
-                            <Form.Control
-                                className={`${styles.InputFields} text-muted`}
-                                type="password"
-                                placeholder="Confirm password"
-                                name="password2"
-                                value={password2}
-                                onChange={handleChange}
-                            />
-                        </Form.Group>
-                        {errors.password2?.map((msg, idx) => (
-                            <Alert key={idx} variant="warning">{msg}</Alert>
-                        ))}
-
                         <Button className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`} type="submit">
-                            Continue
+                            Sign In
                         </Button>
                         {errors.non_field_errors?.map((msg, idx) => (
                             <Alert key={idx} variant="warning" className="mt-3">{msg}</Alert>
@@ -105,8 +68,8 @@ const SignUpForm = () => {
                     <h1 className={`${styles.Header} text-muted`}>Or</h1>
 
                     <Container className={`mt-3 ${appStyles.Content}`}>
-                        <Link className={styles.Link} to="/signin">
-                            Already have an account? <span>Sign in here</span>
+                        <Link className={styles.Link} to="/signup">
+                            Don't have an account? <span>Sign up now!</span>
                         </Link>
                     </Container>
                 </Container>
@@ -120,6 +83,6 @@ const SignUpForm = () => {
             </Col>
         </Row>
     );
-};
+}
 
-export default SignUpForm;
+export default SignInForm;
