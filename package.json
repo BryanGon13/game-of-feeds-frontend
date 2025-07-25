@@ -15,14 +15,16 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^5.3.4",
     "react-scripts": "^4.0.3",
+    "serve": "^14.2.4",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
     "heroku-prebuild": "npm install -g serve",
-    "start": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm install && npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -50,3 +52,8 @@
     "npm": "8.19.3"
   }
 }
+
+heroku create game-of-feeds-frontend
+git add .
+git commit -m "Deploy frontend"
+git push heroku main
