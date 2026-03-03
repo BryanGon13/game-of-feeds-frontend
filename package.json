@@ -52,8 +52,3 @@
     "npm": "8.19.3"
   }
 }
-
-heroku create game-of-feeds-frontend
-git add .
-git commit -m "Deploy frontend"
-git push heroku main
