@@ -73,7 +73,7 @@ function PostEditForm() {
 
     try {
       await axiosReq.put(`/posts/${id}/`, formData);
-      history.push(`/posts/${id}`);
+      history.goBack();;
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
