@@ -67,6 +67,8 @@ function PostEditForm() {
     const formData = new FormData();
     formData.append("caption", caption);
 
+    console.log("selected file:", imageInput?.current?.files?.[0]);
+
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
     }
