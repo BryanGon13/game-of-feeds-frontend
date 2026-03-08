@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -21,13 +20,15 @@ function PostsPage({ message, filter = "" }) {
     const [posts, setPosts] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
     const [query, setQuery] = useState("");
+    const [ordering, setOrdering] = useState("-created_at");
     const { pathname } = useLocation();
-    
 
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const { data } = await axiosReq.get(`/posts/?${filter}&search=${encodeURIComponent(query)}`);
+                const { data } = await axiosReq.get(
+                    `/posts/?${filter}&search=${encodeURIComponent(query)}&ordering=${ordering}`
+                );
                 setPosts(data);
                 setHasLoaded(true);
             } catch (err) {
@@ -37,39 +38,48 @@ function PostsPage({ message, filter = "" }) {
 
         setHasLoaded(false);
         fetchPosts();
-    }, [filter, pathname, query]);
+    }, [filter, pathname, query, ordering]);
 
     return (
         <Row className="h-100">
             <Col className="py-2 p-0 p-lg-2" lg={8}>
-            <Form
-                onSubmit={(event) => {
-                    event.preventDefault();
-                }}
-                className="mb-3"
-            >
-                <Form.Control
-                    type="text"
-                    placeholder="Search by username..."
-                    value={query}
-                    onChange={(event) => setQuery(event.target.value)}
-                />
-            </Form>
+                <Form
+                    onSubmit={(event) => {
+                        event.preventDefault();
+                    }}
+                    className="mb-3"
+                >
+                    <Form.Control
+                        type="text"
+                        placeholder="Search by username..."
+                        value={query}
+                        onChange={(event) => setQuery(event.target.value)}
+                        className="mb-2"
+                    />
+
+                    <Form.Control
+                        as="select"
+                        value={ordering}
+                        onChange={(event) => setOrdering(event.target.value)}
+                    >
+                        <option value="-created_at">Newest</option>
+                        <option value="-likes_count">Most liked</option>
+                        <option value="-comments_count">Most commented</option>
+                    </Form.Control>
+                </Form>
+
                 {hasLoaded ? (
                     <>
                         {posts.results.length ? (
                             <InfiniteScroll
-                                children={
-                                    posts.results.map((post) => (
-                                        <Post key={post.id} {...post} setPosts={setPosts} />
-                                    ))
-                                }
+                                children={posts.results.map((post) => (
+                                    <Post key={post.id} {...post} setPosts={setPosts} />
+                                ))}
                                 dataLength={posts.results.length}
                                 loader={<Asset spinner />}
                                 hasMore={!!posts.next}
                                 next={() => fetchMoreData(posts, setPosts)}
                             />
-
                         ) : (
                             <Container className={appStyles.Content}>
                                 <Asset src={NoResults} message={message} />
