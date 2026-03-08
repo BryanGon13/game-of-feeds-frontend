@@ -1,0 +1,76 @@
+.ProfileCard {
+    padding: 2rem 1.5rem;
+    min-height: 100%;
+}
+
+.ProfileImage {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.Username {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.Handle {
+    color: #6c757d;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.Bio {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #444;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.PostGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.PostLink {
+    text-decoration: none;
+}
+
+.PostCard {
+    border: none;
+    overflow: hidden;
+    height: 220px;
+}
+
+.PostImage {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.NoImage {
+    width: 100%;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    color: #555;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 991px) {
+    .PostGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .ProfileCard {
+        margin-bottom: 1rem;
+    }
+}

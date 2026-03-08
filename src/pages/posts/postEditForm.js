@@ -75,6 +75,7 @@ function PostEditForm() {
 
     try {
       await axiosReq.put(`/posts/${id}/`, formData);
+      alert("Post updated successfully!");
       history.goBack();;
     } catch (err) {
       console.log(err);

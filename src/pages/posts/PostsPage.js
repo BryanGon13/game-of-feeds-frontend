@@ -20,14 +20,16 @@ function PostsPage({ message, filter = "" }) {
     const [posts, setPosts] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
     const [query, setQuery] = useState("");
-    const [ordering, setOrdering] = useState("-created_at");
+    const [ordering, setOrdering] = useState("");
     const { pathname } = useLocation();
 
     useEffect(() => {
         const fetchPosts = async () => {
             try {
                 const { data } = await axiosReq.get(
-                    `/posts/?${filter}&search=${encodeURIComponent(query)}&ordering=${ordering}`
+                    `/posts/?${filter}&search=${encodeURIComponent(query)}${
+                        ordering ? `&ordering=${ordering}` : ""
+                    }`
                 );
                 setPosts(data);
                 setHasLoaded(true);
@@ -62,6 +64,9 @@ function PostsPage({ message, filter = "" }) {
                         value={ordering}
                         onChange={(event) => setOrdering(event.target.value)}
                     >
+                        <option value="" disabled>
+                            Filter by...
+                        </option>
                         <option value="-created_at">Newest</option>
                         <option value="-likes_count">Most liked</option>
                         <option value="-comments_count">Most commented</option>
@@ -91,9 +96,6 @@ function PostsPage({ message, filter = "" }) {
                         <Asset spinner />
                     </Container>
                 )}
-            </Col>
-            <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-                <p>Popular profiles for desktop</p>
             </Col>
         </Row>
     );
