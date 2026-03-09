@@ -1,7 +1,7 @@
 # Game of Feeds
 
 
-[**Link to the live website**](https://nova-restaurant-54f750dd6682.herokuapp.com/)
+[**Link to the live website**](https://game-of-feeds-frontend-cf67b44b0611.herokuapp.com/)
 
 
 # Project Overview
@@ -16,8 +16,8 @@ The application allows users to create posts, browse a feed of content, explore 
 
 ### Homepage
 
-![Wireframe Screenshot](./static/readme_images/wf-home.png)
-![Homepage Screenshot](./static/readme_images/homepage.png)
+![Wireframe Screenshot](./src/assets/feed-page.png)
+![Homepage Screenshot](./src/assets/feed-page-1.png)
 
 **Design Rationale:**
 The homepage serves as the main content feed where users can browse posts shared by the various Game of Thrones characters.
@@ -28,8 +28,8 @@ A search bar allows users to quickly locate specific characters by username, whi
 
 ### Create Post
 
-![wireframe Screenshot](./static/readme_images/wf-menu.png)
-![Menu Page Screenshot](./static/readme_images/Menu.png)
+![wireframe Screenshot](./src/assets/cp-wf.png)
+![Menu Page Screenshot](./src/assets/cp.png)
 
 **Design Rationale:**
 The create post page allows users to upload an image and write a caption for their post.
@@ -40,8 +40,8 @@ This design reflects the project’s goal of creating a simple and accessible po
 
 ### Profile Page
 
-![Wireframe Screenshot](./static/readme_images/wf-reservations.png)
-![Reservations Page Screenshot](./static/readme_images/reservations.png)
+![Wireframe Screenshot](./src/assets/pp-wf.png)
+![Reservations Page Screenshot](./src/assets/pp.png)
 
 **Design Rationale:**
 Each character has their own profile page where users can view their information and posts.
@@ -350,16 +350,11 @@ The platform was designed with accessibility considerations including sufficient
 To ensure code quality and best practices, the following validation tools were used:
 
 - **HTML** — All HTML templates were tested using the [W3C Markup Validation Service](https://validator.w3.org/).  
-![W3C HTML Screenshot](./static/readme_images/w3c.png)
+![W3C HTML Screenshot](./src/assets/html.png)
 
 - **CSS** — All custom CSS was tested with the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/).  
-![W3C CSS Screenshot](./static/readme_images/CSS.png)
+![W3C CSS Screenshot](./src/assets/css.png)
 
-- **Python** — Python code was checked using the terminal-based `flake8` command to confirm it met PEP8 style guidelines.  
-![PEP8 Python Screenshot](./static/readme_images/flake8.png)
-
-- **JavaScript** — Custom JavaScript was tested with [JSHint](https://jshint.com/) to ensure there were no syntax errors.  
-![JShint Screenshot](./static/readme_images/JStest.png)
 
 All validation tools reported no critical errors. 
 
@@ -398,29 +393,6 @@ The application was tested using Chrome DevTools device simulation and on multip
 ### Known Issues
 
 On some profile pages the miniature preview images may appear slightly misaligned. This occurs when the image focal point differs from the cropped grid layout.
-
-
-## Lighthouse Performance & Accessibility
-
-Lighthouse was used via Chrome DevTools to test the deployed site’s **Performance**, **Accessibility**, **Best Practices**, and **SEO**.
-
-**Testing Steps:**
-1. Opened the deployed Heroku site in Google Chrome.
-2. Opened Chrome DevTools → Lighthouse tab.
-3. Selected "Mobile" and "Desktop" tests with all categories checked.
-4. Clicked **Generate Report**.
-
-**Results (Desktop & Mobile):**  
-
-![Lighthouse Results](./static/readme_images/lighthouse.png)  
-
-- **Performance:** 95  
-- **Accessibility:** 95  
-- **Best Practices:** 78  
-- **SEO:** 91  
-
-**Notes:**  
-The lower Best Practices score is due to some minor optimizations (e.g., HTTPS usage warnings from third-party resources) that do not affect core functionality.
 
 
 ## Credits & Acknowledgements
