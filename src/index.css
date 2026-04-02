@@ -1,11 +1,28 @@
+:root {
+  --got-bg:          #080b12;
+  --got-surface:     #0f1220;
+  --got-card:        #13172a;
+  --got-sidebar:     #0a0d1a;
+  --got-border:      #252c47;
+  --got-gold:        #c9a84c;
+  --got-gold-light:  #e8c97a;
+  --got-gold-dark:   #8a6f2d;
+  --got-red:         #9b2335;
+  --got-red-bright:  #c0392b;
+  --got-text:        #e8d5a3;
+  --got-text-muted:  #8a94b8;
+  --got-text-dim:    #454d6e;
+}
+
 body {
   display: flex;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+  color: var(--got-text);
+  background-color: var(--got-bg);
 }
 
 #root {
@@ -21,6 +38,74 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* ── Bootstrap overrides ────────────────────────────────── */
+
+.card {
+  background-color: var(--got-card) !important;
+  border-color: var(--got-border) !important;
+  color: var(--got-text) !important;
+}
+
+.form-control {
+  background-color: var(--got-surface) !important;
+  border-color: var(--got-border) !important;
+  color: var(--got-text) !important;
+}
+
+.form-control:focus {
+  background-color: var(--got-surface) !important;
+  border-color: var(--got-gold) !important;
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.18) !important;
+  color: var(--got-text) !important;
+}
+
+.form-control::placeholder {
+  color: var(--got-text-dim) !important;
+}
+
+.form-control option {
+  background-color: var(--got-surface);
+  color: var(--got-text);
+}
+
+.dropdown-menu {
+  background-color: var(--got-card) !important;
+  border-color: var(--got-border) !important;
+}
+
+.dropdown-item {
+  color: var(--got-text) !important;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(201, 168, 76, 0.12) !important;
+  color: var(--got-gold) !important;
+}
+
+.tooltip-inner {
+  background-color: var(--got-card);
+  color: var(--got-gold);
+  border: 1px solid var(--got-border);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--got-border);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--got-gold-dark);
 }

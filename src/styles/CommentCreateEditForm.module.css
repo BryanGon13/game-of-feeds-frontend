@@ -1,20 +1,48 @@
 .Form {
-    border: none;
-    border-bottom: 2px #00d1ff solid;
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid var(--got-border) !important;
+    border-radius: 0 !important;
+    color: var(--got-text) !important;
+    resize: none;
+    font-size: 0.9rem;
+    padding: 8px 4px;
+    transition: border-color 0.2s ease;
+    width: 100%;
+}
+
+.Form:focus {
+    outline: none;
+    border-bottom-color: var(--got-gold) !important;
+    box-shadow: none !important;
+}
+
+.Form::placeholder {
+    color: var(--got-text-dim) !important;
+    font-style: italic;
 }
 
 .Button {
     border: none;
-    background-color: #242a3d;
-    color: aliceblue;
-    border-radius: 100px;
-    padding: 4px 10px;
+    background-color: var(--got-gold);
+    color: #0a0c14;
+    border-radius: 6px;
+    padding: 6px 18px;
     min-width: 75px;
-    margin: 5px;
+    margin: 5px 4px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .Button:hover {
-    cursor: pointer;
-    background-color: aliceblue;
-    color: #242a3d;
+    background-color: var(--got-gold-light);
+    transform: translateY(-1px);
+}
+
+.Button:active {
+    transform: translateY(0);
 }

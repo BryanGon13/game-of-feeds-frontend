@@ -3,4 +3,6 @@
     margin: 0px 10px 0px 0px;
     object-fit: cover;
     display: inline-block;
+    border: 2px solid var(--got-gold-dark);
+    box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.15);
 }

@@ -1,33 +1,44 @@
 .ProfileCard {
     padding: 2rem 1.5rem;
     min-height: 100%;
+    background-color: var(--got-card);
+    border-radius: 14px;
+    border: 1px solid var(--got-border);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 
 .ProfileImage {
     width: 140px;
     height: 140px;
     object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--got-gold-dark);
+    box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.18), 0 6px 24px rgba(0, 0, 0, 0.5);
     margin-bottom: 1rem;
 }
 
 .Username {
-    font-size: 1.8rem;
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
     font-weight: 600;
-    margin-bottom: 0.25rem;
+    color: var(--got-gold);
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.04em;
 }
 
 .Handle {
-    color: #6c757d;
-    font-size: 1rem;
+    color: var(--got-text-muted);
+    font-size: 0.9rem;
     margin-bottom: 1rem;
 }
 
 .Bio {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #444;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--got-text-muted);
     max-width: 320px;
-    margin: 0 auto;
+    margin: 0 auto 1rem;
 }
 
 .PostGrid {
@@ -41,9 +52,19 @@
 }
 
 .PostCard {
-    border: none;
+    border: 1px solid var(--got-border) !important;
+    border-radius: 10px !important;
     overflow: hidden;
     height: 220px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    background-color: var(--got-surface) !important;
+}
+
+.PostCard:hover {
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--got-gold-dark);
+    border-color: var(--got-gold-dark) !important;
+    transform: translateY(-2px);
 }
 
 .PostImage {
@@ -58,11 +79,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f8f9fa;
-    color: #555;
+    background: var(--got-surface);
+    color: var(--got-text-dim);
     padding: 1rem;
     text-align: center;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 @media (max-width: 991px) {
@@ -71,6 +92,6 @@
     }
 
     .ProfileCard {
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
     }
 }

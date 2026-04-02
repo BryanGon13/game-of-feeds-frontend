@@ -1,3 +1,9 @@
 .Container {
     min-height: 343px;
+    background-color: var(--got-card);
+    border-radius: 14px;
+    border: 1px solid var(--got-border);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    padding: 1.75rem;
+    color: var(--got-text);
 }

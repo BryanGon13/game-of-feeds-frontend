@@ -3,33 +3,50 @@
 }
 
 .Input {
-    background: #ffffff;
-    border: 1px solid #f0f1f9;
+    background-color: var(--got-surface) !important;
+    border: 1.5px solid var(--got-border) !important;
     box-sizing: border-box;
-    border-radius: 2px;
-    color: #7177a1;
-    text-align: center;
-    padding: 20px;
+    border-radius: 8px;
+    color: var(--got-text) !important;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.Input:focus {
+    border-color: var(--got-gold) !important;
+    box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.18) !important;
+    outline: none;
+}
+
+.Input::placeholder {
+    color: var(--got-text-dim) !important;
 }
 
 .FormCard {
-    background-color: white;
-    padding: 2rem 2.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    background-color: var(--got-card);
+    padding: 2.5rem;
+    border-radius: 14px;
+    border: 1px solid var(--got-border);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(201, 168, 76, 0.08);
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     margin: auto;
 }
 
 .Header {
-    font-style: normal;
-    font-size: 16px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--got-gold);
     text-align: center;
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.06em;
 }
 
 .InputFields {
-    background-color: #f2f2f2;
+    background-color: var(--got-surface);
+    border-radius: 8px;
 }
 
 .Link {
@@ -37,16 +54,28 @@
     text-align: center;
     display: block;
     margin: auto;
-    color: black;
+    color: var(--got-text-muted);
     border: none;
+    font-size: 0.88rem;
+    margin-top: 1rem;
 }
 
 .Link span {
-    color: #2142b2;
+    color: var(--got-gold);
+    font-weight: 600;
+}
+
+.Link:hover {
+    color: var(--got-text);
 }
 
 .Container {
-    padding: 30px 10px;
+    padding: 40px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--got-bg);
 }
 
 .SignInCol {
@@ -55,11 +84,7 @@
 
 .SignUpCol {
     height: 375px;
-}
-
-.SignUpCol {
     background-color: transparent;
-    /* optional, can be customized */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,4 +94,6 @@
     max-height: 100%;
     max-width: 100%;
     object-fit: cover;
+    border-radius: 12px;
+    opacity: 0.7;
 }

@@ -1,76 +1,95 @@
 .Button {
-    font-size: 0.8rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
     align-self: center;
-    border-radius: 100px;
-    border-color: transparent;
-    padding: 4px 10px;
-    margin-left: 2px;
-    margin-right: 2px;
-    min-width: 75px;
+    border-radius: 6px;
+    border: none;
+    padding: 7px 18px;
+    margin-left: 4px;
+    margin-right: 4px;
+    min-width: 80px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
 }
 
 .Button:hover {
-    opacity: 0.8;
-    border-color: transparent;
-    cursor: pointer;
-}
-
-.Button:hover:active {
-    background-color: #2142b2 !important;
+    transform: translateY(-1px);
 }
 
 .Button:active {
-    background-color: #2142b2 !important;
+    transform: translateY(0);
 }
 
-.Button:focus {
-    background-color: #2142b2;
+/* Gold — primary action */
+.Blue {
+    background-color: var(--got-gold);
+    color: #0a0c14;
+}
+
+.Blue:hover {
+    background-color: var(--got-gold-light);
+    color: #0a0c14;
+    box-shadow: 0 4px 14px rgba(201, 168, 76, 0.35);
+}
+
+/* Gold outline */
+.BlueOutline {
+    background-color: transparent;
+    color: var(--got-gold);
+    border: 1.5px solid var(--got-gold);
+}
+
+.BlueOutline:hover {
+    background-color: var(--got-gold);
+    color: #0a0c14;
+}
+
+/* Dark — secondary */
+.Black {
+    background-color: var(--got-surface);
+    color: var(--got-text);
+    border: 1.5px solid var(--got-border);
+}
+
+.Black:hover {
+    background-color: var(--got-border);
+    color: var(--got-text);
+}
+
+/* Dark outline */
+.BlackOutline {
+    background-color: transparent;
+    color: var(--got-text-muted);
+    border: 1.5px solid var(--got-border);
+}
+
+.BlackOutline:hover {
+    background-color: var(--got-border);
+    color: var(--got-text);
+}
+
+/* Bright — same as Blue for consistency */
+.Bright {
+    background-color: var(--got-gold);
+    color: #0a0c14;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.Bright:hover {
+    background-color: var(--got-gold-light);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(201, 168, 76, 0.35);
 }
 
 .Wide {
     padding: 10px 50px;
     width: 100%;
-}
-
-.Blue,
-.BlueOutline:hover,
-.Bright:hover {
-    background-color: #2142b2;
-    color: #ffffff;
-}
-
-.BlueOutline,
-.Blue:hover {
-    /* border: 1px solid #2142b2; */
-    background-color: #ffffff;
-    color: #2142b2;
-}
-
-.Black,
-.BlackOutline:hover {
-    /* background-color: #242a3d;
-  color: white; */
-    background-color: #242a3d;
-    color: aliceblue;
-}
-
-.Black:hover,
-.BlackOutline {
-    /* background-color: #dadadf;
-  color: #242a3d;
-  border-color: #242a3d; */
-    background-color: aliceblue;
-    color: #242a3d;
-}
-
-.Bright {
-    background-color: #0066ff;
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    transition: background-color 0.2s ease;
-}
-
-.Bright:hover {
-    background-color: #0052cc;
 }

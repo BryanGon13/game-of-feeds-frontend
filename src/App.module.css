@@ -1,7 +1,8 @@
 .App {
-    font-family: "DM Sans", sans-serif;
-    background-color: #f8f8f8;
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--got-bg);
     min-height: 100vh;
+    color: var(--got-text);
 }
 
 .Main {
@@ -9,9 +10,11 @@
 }
 
 .Content {
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 2px;
+    background-color: var(--got-card);
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--got-border);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
 .FillerImage {
@@ -31,17 +34,18 @@
 }
 
 a {
-    color: #555555;
-    transition: color ease-in-out 0.3s;
+    color: var(--got-gold);
+    transition: color 0.2s ease;
 }
 
 a:hover {
     text-decoration: none;
+    color: var(--got-gold-light);
 }
 
 a:hover i {
-    color: #2142b2;
-    transition: color ease-in-out 0.3s;
+    color: var(--got-gold);
+    transition: color 0.2s ease;
 }
 
 input[type="file"] {
@@ -49,36 +53,19 @@ input[type="file"] {
 }
 
 i {
-    color: #cfced3;
-    font-size: 1.6rem;
-    padding: 7px;
+    color: var(--got-text-dim);
+    font-size: 1.3rem;
+    padding: 6px;
     vertical-align: middle;
+    transition: color 0.2s ease;
 }
 
 i:hover {
     cursor: pointer;
-    transition: color ease-in-out 0.3s;
-    color: #2142b2;
+    color: var(--got-gold);
 }
 
 figure {
     text-align: center;
     display: inline-block;
-}
-
-/* scrollbar */
-*::-webkit-scrollbar {
-    width: 5px;
-}
-
-*::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-*::-webkit-scrollbar-thumb {
-    background: #888;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-    background: #555;
 }

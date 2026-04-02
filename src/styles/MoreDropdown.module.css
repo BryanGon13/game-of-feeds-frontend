@@ -8,4 +8,9 @@
     position: absolute;
     right: 0;
     z-index: 99;
+    background-color: var(--got-card);
+    border: 1px solid var(--got-border);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(201, 168, 76, 0.08);
+    overflow: hidden;
 }

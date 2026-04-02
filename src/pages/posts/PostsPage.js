@@ -43,7 +43,7 @@ function PostsPage({ message, filter = "" }) {
     }, [filter, pathname, query, ordering]);
 
     return (
-        <Row className="h-100">
+        <Row className="h-100 justify-content-center">
             <Col className="py-2 p-0 p-lg-2" lg={8}>
                 <Form
                     onSubmit={(event) => {

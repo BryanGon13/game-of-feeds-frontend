@@ -1,24 +1,73 @@
 .Post {
-    background-color: #ffffff;
-    border: 1px solid #dadadf;
-    border-radius: 2px;
-    margin-bottom: 16px;
-    text-align: center;
+    background-color: var(--got-card) !important;
+    border: 1px solid var(--got-border) !important;
+    border-radius: 14px !important;
+    margin-bottom: 22px;
+    text-align: left;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+    transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+    overflow: hidden;
+    color: var(--got-text) !important;
+}
+
+.Post:hover {
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--got-gold-dark);
+    border-color: var(--got-gold-dark) !important;
+    transform: translateY(-2px);
 }
 
 .Post figure,
 h5 {
-    margin: 0 0;
+    margin: 0;
+}
+
+/* owner name & date inside card body */
+.Post .card-body span {
+    color: var(--got-text-muted);
+    font-size: 0.85rem;
+}
+
+/* post caption */
+.Post .card-text {
+    color: var(--got-text);
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.PostBar {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--got-text-muted);
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--got-border);
+}
+
+.PostBar span {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    cursor: pointer;
 }
 
 .Heart {
-    color: #f85032;
+    color: var(--got-red-bright) !important;
+    padding: 4px;
+    font-size: 1.2rem;
 }
 
 .Heart:hover {
-    color: #2142b2;
+    color: var(--got-gold) !important;
+}
+
+.HeartOutline {
+    padding: 4px;
+    font-size: 1.2rem;
+    color: var(--got-text-dim) !important;
 }
 
 .HeartOutline:hover {
-    color: #f85032;
+    color: var(--got-red-bright) !important;
 }
