@@ -46,3 +46,31 @@
 .Button:active {
     transform: translateY(0);
 }
+
+/* Comment display */
+.CommentBody {
+    background-color: var(--got-surface);
+    border: 1px solid var(--got-border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    flex: 1;
+}
+
+.CommentOwner {
+    font-weight: 600;
+    color: var(--got-gold);
+    font-size: 0.88rem;
+    margin-right: 8px;
+}
+
+.CommentDate {
+    color: var(--got-text-dim);
+    font-size: 0.78rem;
+}
+
+.CommentContent {
+    color: var(--got-text);
+    font-size: 0.9rem;
+    margin: 4px 0 0;
+    line-height: 1.5;
+}
