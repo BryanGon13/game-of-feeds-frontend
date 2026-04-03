@@ -59,7 +59,7 @@ function PostPage() {
                     {comments.results.length ? (
                         <div className="mt-3">
                             {comments.results.map((comment) => (
-                                <Comment key={comment.id} {...comment} />
+                                <Comment key={comment.id} {...comment} setComments={setComments} />
                             ))}
                         </div>
                     ) : (
