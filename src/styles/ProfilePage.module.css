@@ -1,97 +1,88 @@
 .ProfileCard {
     padding: 2rem 1.5rem;
     min-height: 100%;
-    background-color: var(--got-card);
-    border-radius: 14px;
-    border: 1px solid var(--got-border);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    background-color: var(--card);
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
     text-align: center;
 }
 
 .ProfileImage {
-    width: 140px;
-    height: 140px;
+    width: 130px;
+    height: 130px;
     object-fit: cover;
     border-radius: 50%;
-    border: 3px solid var(--got-gold-dark);
-    box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.18), 0 6px 24px rgba(0, 0, 0, 0.5);
+    border: 3px solid var(--border);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
     margin-bottom: 1rem;
 }
 
 .Username {
-    font-family: 'Cinzel', serif;
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: var(--got-gold);
-    margin-bottom: 0.2rem;
-    letter-spacing: 0.04em;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+    letter-spacing: -0.01em;
 }
 
 .Handle {
-    color: var(--got-text-muted);
-    font-size: 0.9rem;
+    color: var(--text-dim);
+    font-size: 0.88rem;
     margin-bottom: 1rem;
 }
 
 .Bio {
-    font-size: 0.9rem;
-    line-height: 1.65;
-    color: var(--got-text-muted);
-    max-width: 320px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 300px;
     margin: 0 auto 1rem;
 }
 
 .PostGrid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 0.85rem;
 }
 
-.PostLink {
-    text-decoration: none;
-}
+.PostLink { text-decoration: none; }
 
 .PostCard {
-    border: 1px solid var(--got-border) !important;
-    border-radius: 10px !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
     overflow: hidden;
-    height: 220px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
-    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-    background-color: var(--got-surface) !important;
+    height: 200px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    background-color: var(--surface) !important;
 }
 
 .PostCard:hover {
-    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--got-gold-dark);
-    border-color: var(--got-gold-dark) !important;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
 }
 
 .PostImage {
     width: 100%;
-    height: 220px;
+    height: 200px;
     object-fit: cover;
 }
 
 .NoImage {
     width: 100%;
-    height: 220px;
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--got-surface);
-    color: var(--got-text-dim);
+    background: var(--border-light);
+    color: var(--text-dim);
     padding: 1rem;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
 }
 
 @media (max-width: 991px) {
-    .PostGrid {
-        grid-template-columns: 1fr;
-    }
-
-    .ProfileCard {
-        margin-bottom: 1.5rem;
-    }
+    .PostGrid { grid-template-columns: 1fr; }
+    .ProfileCard { margin-bottom: 1.5rem; }
 }

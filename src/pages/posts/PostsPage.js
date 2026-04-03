@@ -9,6 +9,7 @@ import Post from "./Post";
 import Asset from "../../components/Asset";
 
 import appStyles from "../../App.module.css";
+import styles from "../../styles/PostsPage.module.css";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -45,20 +46,21 @@ function PostsPage({ message, filter = "" }) {
 
     return (
         <Row className="h-100 justify-content-center">
-            <Col className="py-2 p-0 p-lg-2" lg={8}>
+            <Col xs={12} className="py-2 p-0 p-lg-2">
                 <Form
-                    onSubmit={(event) => {
-                        event.preventDefault();
-                    }}
+                    onSubmit={(event) => event.preventDefault()}
                     className="mb-3"
                 >
-                    <Form.Control
-                        type="text"
-                        placeholder="Search by username..."
-                        value={query}
-                        onChange={(event) => setQuery(event.target.value)}
-                        className="mb-2"
-                    />
+                    <div className={styles.SearchBar}>
+                        <i className={`fas fa-search ${styles.SearchIcon}`} />
+                        <Form.Control
+                            type="text"
+                            placeholder="Search by username..."
+                            value={query}
+                            onChange={(event) => setQuery(event.target.value)}
+                            className="mb-2"
+                        />
+                    </div>
 
                     <Form.Control
                         as="select"
@@ -77,15 +79,24 @@ function PostsPage({ message, filter = "" }) {
                 {hasLoaded ? (
                     <>
                         {posts.results.length ? (
-                            <InfiniteScroll
-                                children={posts.results.map((post) => (
-                                    <Post key={post.id} {...post} setPosts={setPosts} />
-                                ))}
-                                dataLength={posts.results.length}
-                                loader={<Asset spinner />}
-                                hasMore={!!posts.next}
-                                next={() => fetchMoreData(posts, setPosts)}
-                            />
+                            <div className={styles.FeedWrapper}>
+                                <InfiniteScroll
+                                    dataLength={posts.results.length}
+                                    loader={<Asset spinner />}
+                                    hasMore={!!posts.next}
+                                    next={() => fetchMoreData(posts, setPosts)}
+                                >
+                                    <div className={styles.Grid}>
+                                        {posts.results.map((post) => (
+                                            <Post
+                                                key={post.id}
+                                                {...post}
+                                                setPosts={setPosts}
+                                            />
+                                        ))}
+                                    </div>
+                                </InfiniteScroll>
+                            </div>
                         ) : (
                             <Container className={appStyles.Content}>
                                 <Asset src={NoResults} message={message} />

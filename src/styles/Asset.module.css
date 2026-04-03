@@ -4,12 +4,11 @@
     justify-content: center;
     align-items: center;
     min-height: 120px;
-    color: var(--got-text-dim);
+    color: var(--text-dim);
     gap: 0.75rem;
     font-size: 0.9rem;
 }
 
 .Asset img {
-    opacity: 0.55;
-    filter: sepia(0.4) hue-rotate(10deg);
+    opacity: 0.5;
 }

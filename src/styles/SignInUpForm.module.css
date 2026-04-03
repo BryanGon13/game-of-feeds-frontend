@@ -2,51 +2,50 @@
     height: calc(100vh - 81px);
 }
 
-.Input {
-    background-color: var(--got-surface) !important;
-    border: 1.5px solid var(--got-border) !important;
-    box-sizing: border-box;
-    border-radius: 8px;
-    color: var(--got-text) !important;
-    padding: 12px 16px;
-    font-size: 0.9rem;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.Input:focus {
-    border-color: var(--got-gold) !important;
-    box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.18) !important;
-    outline: none;
-}
-
-.Input::placeholder {
-    color: var(--got-text-dim) !important;
-}
-
 .FormCard {
-    background-color: var(--got-card);
+    background-color: var(--card);
     padding: 2.5rem;
-    border-radius: 14px;
-    border: 1px solid var(--got-border);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(201, 168, 76, 0.08);
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
     width: 100%;
     max-width: 420px;
     margin: auto;
 }
 
 .Header {
-    font-family: 'Cinzel', serif;
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: var(--got-gold);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
     text-align: center;
-    margin-bottom: 1.75rem;
-    letter-spacing: 0.06em;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+}
+
+.Input {
+    background-color: var(--surface) !important;
+    border: 1.5px solid var(--border) !important;
+    border-radius: 10px;
+    color: var(--text) !important;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.Input:focus {
+    border-color: var(--gold) !important;
+    box-shadow: 0 0 0 3px rgba(184, 146, 58, 0.12) !important;
+    outline: none;
+}
+
+.Input::placeholder {
+    color: var(--text-dim) !important;
 }
 
 .InputFields {
-    background-color: var(--got-surface);
-    border-radius: 8px;
+    background-color: var(--surface);
+    border-radius: 10px;
+    color: var(--text) !important;
 }
 
 .Link {
@@ -54,19 +53,20 @@
     text-align: center;
     display: block;
     margin: auto;
-    color: var(--got-text-muted);
+    color: var(--text-muted);
     border: none;
     font-size: 0.88rem;
     margin-top: 1rem;
 }
 
 .Link span {
-    color: var(--got-gold);
+    color: var(--gold);
     font-weight: 600;
 }
 
 .Link:hover {
-    color: var(--got-text);
+    color: var(--text);
+    text-decoration: none;
 }
 
 .Container {
@@ -75,12 +75,10 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: var(--got-bg);
+    background-color: var(--bg);
 }
 
-.SignInCol {
-    height: 320px;
-}
+.SignInCol  { height: 320px; }
 
 .SignUpCol {
     height: 375px;
@@ -94,6 +92,5 @@
     max-height: 100%;
     max-width: 100%;
     object-fit: cover;
-    border-radius: 12px;
-    opacity: 0.7;
+    border-radius: 16px;
 }

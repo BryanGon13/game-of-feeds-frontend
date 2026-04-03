@@ -3,90 +3,80 @@
     font-size: 0.85rem;
     font-weight: 600;
     align-self: center;
-    border-radius: 6px;
+    border-radius: 8px;
     border: none;
-    padding: 7px 18px;
+    padding: 8px 20px;
     margin-left: 4px;
     margin-right: 4px;
     min-width: 80px;
     cursor: pointer;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
     text-transform: uppercase;
     transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
 }
 
-.Button:hover {
-    transform: translateY(-1px);
-}
+.Button:hover  { transform: translateY(-1px); }
+.Button:active { transform: translateY(0); }
 
-.Button:active {
-    transform: translateY(0);
-}
-
-/* Gold — primary action */
+/* Primary */
 .Blue {
-    background-color: var(--got-gold);
-    color: #0a0c14;
+    background-color: var(--gold);
+    color: #ffffff;
 }
-
 .Blue:hover {
-    background-color: var(--got-gold-light);
-    color: #0a0c14;
-    box-shadow: 0 4px 14px rgba(201, 168, 76, 0.35);
+    background-color: var(--gold-light);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(184, 146, 58, 0.3);
 }
 
 /* Gold outline */
 .BlueOutline {
     background-color: transparent;
-    color: var(--got-gold);
-    border: 1.5px solid var(--got-gold);
+    color: var(--gold);
+    border: 1.5px solid var(--gold);
 }
-
 .BlueOutline:hover {
-    background-color: var(--got-gold);
-    color: #0a0c14;
+    background-color: var(--gold);
+    color: #ffffff;
 }
 
-/* Dark — secondary */
+/* Secondary */
 .Black {
-    background-color: var(--got-surface);
-    color: var(--got-text);
-    border: 1.5px solid var(--got-border);
+    background-color: var(--surface);
+    color: var(--text);
+    border: 1.5px solid var(--border);
 }
-
 .Black:hover {
-    background-color: var(--got-border);
-    color: var(--got-text);
+    background-color: var(--border-light);
+    color: var(--text);
 }
 
-/* Dark outline */
+/* Secondary outline */
 .BlackOutline {
     background-color: transparent;
-    color: var(--got-text-muted);
-    border: 1.5px solid var(--got-border);
+    color: var(--text-muted);
+    border: 1.5px solid var(--border);
 }
-
 .BlackOutline:hover {
-    background-color: var(--got-border);
-    color: var(--got-text);
+    background-color: var(--border-light);
+    color: var(--text);
 }
 
-/* Bright — same as Blue for consistency */
+/* Bright — sign in / form submit */
 .Bright {
-    background-color: var(--got-gold);
-    color: #0a0c14;
+    background-color: var(--gold);
+    color: #ffffff;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
     transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
 }
-
 .Bright:hover {
-    background-color: var(--got-gold-light);
+    background-color: var(--gold-light);
     transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(201, 168, 76, 0.35);
+    box-shadow: 0 4px 14px rgba(184, 146, 58, 0.3);
 }
 
 .Wide {

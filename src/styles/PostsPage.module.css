@@ -1,6 +1,6 @@
 .SearchBar {
     position: relative;
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.75rem;
 }
 
 .SearchBar input {
@@ -35,9 +35,40 @@
     color: var(--got-text-dim);
     padding: 0;
     pointer-events: none;
+    z-index: 1;
 }
 
 .SearchIcon:hover {
     cursor: default;
     color: var(--got-text-dim);
+}
+
+/* ── Feed wrapper & grid ─────────────────────────────────────────────── */
+
+.FeedWrapper {
+    background: #f5f5f7;
+    border-radius: 18px;
+    padding: 20px;
+}
+
+.Grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+@media (max-width: 900px) {
+    .Grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 540px) {
+    .Grid {
+        grid-template-columns: 1fr;
+    }
+
+    .FeedWrapper {
+        padding: 12px;
+    }
 }

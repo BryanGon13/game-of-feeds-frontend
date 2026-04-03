@@ -1,20 +1,22 @@
 .App {
     font-family: 'DM Sans', sans-serif;
-    background-color: var(--got-bg);
+    background-color: var(--bg);
     min-height: 100vh;
-    color: var(--got-text);
+    color: var(--text);
 }
 
 .Main {
-    padding-top: 81px;
+    padding-top: 32px;
 }
 
+/* Generic content card used by PostPage, comments section, etc. */
 .Content {
-    background-color: var(--got-card);
-    padding: 16px;
-    border-radius: 12px;
-    border: 1px solid var(--got-border);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+    background-color: var(--card);
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    margin-bottom: 16px;
 }
 
 .FillerImage {
@@ -29,43 +31,37 @@
     object-fit: contain;
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 a {
-    color: var(--got-gold);
+    color: var(--gold);
     transition: color 0.2s ease;
 }
 
 a:hover {
     text-decoration: none;
-    color: var(--got-gold-light);
+    color: var(--gold-light);
 }
 
-a:hover i {
-    color: var(--got-gold);
-    transition: color 0.2s ease;
-}
+a:hover i { color: var(--gold); transition: color 0.2s ease; }
 
-input[type="file"] {
-    display: none;
-}
+input[type="file"] { display: none; }
 
 i {
-    color: var(--got-text-dim);
+    color: var(--text-dim);
     font-size: 1.3rem;
     padding: 6px;
     vertical-align: middle;
     transition: color 0.2s ease;
 }
 
-i:hover {
-    cursor: pointer;
-    color: var(--got-gold);
-}
+i:hover { cursor: pointer; color: var(--gold); }
 
-figure {
-    text-align: center;
-    display: inline-block;
+figure { text-align: center; display: inline-block; }
+
+.ContentWrapper {
+    padding: 2rem;
+    min-height: 100vh;
+    background-color: var(--bg);
+    overflow-x: hidden;
 }

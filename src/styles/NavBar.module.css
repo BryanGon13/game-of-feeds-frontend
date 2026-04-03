@@ -1,17 +1,12 @@
-.NavBar {
-    background-color: var(--got-sidebar);
-    border-right: 1px solid var(--got-border);
-}
-
 .SideBar {
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
     width: 240px;
-    background-color: var(--got-sidebar);
-    border-right: 1px solid var(--got-border);
-    box-shadow: 3px 0 20px rgba(0, 0, 0, 0.6);
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border);
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.06);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -22,7 +17,7 @@
 .Logo {
     text-align: center;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--got-border);
+    border-bottom: 1px solid var(--border);
     margin-bottom: 0.5rem;
 }
 
@@ -40,9 +35,9 @@
     display: flex;
     align-items: center;
     gap: 0.85rem;
-    border-radius: 8px;
-    color: var(--got-text-muted);
-    font-size: 0.95rem;
+    border-radius: 10px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
     font-weight: 500;
     width: 100%;
     transition: background-color 0.18s ease, color 0.18s ease;
@@ -50,60 +45,43 @@
 }
 
 .NavLink i {
-    color: var(--got-text-dim);
-    font-size: 1.2rem;
+    color: var(--text-dim);
+    font-size: 1.1rem;
     padding: 0;
     margin-right: 0;
     transition: color 0.18s ease;
 }
 
 .NavLink:hover {
-    background-color: rgba(201, 168, 76, 0.1);
-    color: var(--got-gold-light);
+    background-color: rgba(184, 146, 58, 0.08);
+    color: var(--gold);
+    text-decoration: none;
 }
 
 .NavLink:hover i {
-    color: var(--got-gold);
+    color: var(--gold);
 }
 
 .Active {
-    background-color: rgba(201, 168, 76, 0.14);
-    color: var(--got-gold) !important;
-    border-left: 3px solid var(--got-gold);
+    background-color: rgba(184, 146, 58, 0.1);
+    color: var(--gold) !important;
+    border-left: 3px solid var(--gold);
 }
 
 .Active i {
-    color: var(--got-gold) !important;
+    color: var(--gold) !important;
 }
 
 .LogoutLink {
     margin-top: auto;
     padding-top: 1.25rem;
-    border-top: 1px solid var(--got-border);
+    border-top: 1px solid var(--border);
 }
 
-.ContentWrapper {
-    padding: 2rem;
-    min-height: 100vh;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    background-color: var(--got-bg);
-}
-
-.text {
-    display: inline;
-}
-
-.Links {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
+.text { display: inline; }
 
 @media (max-width: 768px) {
-    .text {
-        display: none !important;
-    }
+    .text { display: none !important; }
 
     .SideBar {
         width: 60px;
@@ -120,10 +98,8 @@
 
     .Active {
         border-left: none;
-        border-bottom: 2px solid var(--got-gold);
+        border-bottom: 2px solid var(--gold);
     }
 
-    .NavLink i {
-        font-size: 1.2rem;
-    }
+    .NavLink i { font-size: 1.2rem; }
 }

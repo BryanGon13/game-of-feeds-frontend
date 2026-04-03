@@ -1,9 +1,9 @@
 .Form {
-    background-color: transparent !important;
+    background-color: var(--surface) !important;
     border: none !important;
-    border-bottom: 2px solid var(--got-border) !important;
+    border-bottom: 2px solid var(--border) !important;
     border-radius: 0 !important;
-    color: var(--got-text) !important;
+    color: var(--text) !important;
     resize: none;
     font-size: 0.9rem;
     padding: 8px 4px;
@@ -13,64 +13,62 @@
 
 .Form:focus {
     outline: none;
-    border-bottom-color: var(--got-gold) !important;
+    border-bottom-color: var(--gold) !important;
     box-shadow: none !important;
 }
 
 .Form::placeholder {
-    color: var(--got-text-dim) !important;
+    color: var(--text-dim) !important;
     font-style: italic;
 }
 
 .Button {
     border: none;
-    background-color: var(--got-gold);
-    color: #0a0c14;
-    border-radius: 6px;
+    background-color: var(--gold);
+    color: #ffffff;
+    border-radius: 8px;
     padding: 6px 18px;
     min-width: 75px;
     margin: 5px 4px;
     font-size: 0.82rem;
     font-weight: 700;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
     text-transform: uppercase;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .Button:hover {
-    background-color: var(--got-gold-light);
+    background-color: var(--gold-light);
     transform: translateY(-1px);
 }
 
-.Button:active {
-    transform: translateY(0);
-}
+.Button:active { transform: translateY(0); }
 
 /* Comment display */
 .CommentBody {
-    background-color: var(--got-surface);
-    border: 1px solid var(--got-border);
-    border-radius: 10px;
+    background-color: var(--border-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
     padding: 10px 14px;
     flex: 1;
 }
 
 .CommentOwner {
-    font-weight: 600;
-    color: var(--got-gold);
-    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text);
+    font-size: 0.86rem;
     margin-right: 8px;
 }
 
 .CommentDate {
-    color: var(--got-text-dim);
-    font-size: 0.78rem;
+    color: var(--text-dim);
+    font-size: 0.76rem;
 }
 
 .CommentContent {
-    color: var(--got-text);
-    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-size: 0.88rem;
     margin: 4px 0 0;
     line-height: 1.5;
 }

@@ -1,35 +1,25 @@
+/* ── Full detail card (PostPage) ─────────────────────────────────────── */
+
 .Post {
-    background-color: var(--got-card) !important;
-    border: 1px solid var(--got-border) !important;
-    border-radius: 14px !important;
-    margin-bottom: 22px;
+    background-color: var(--card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 18px !important;
+    margin-bottom: 16px;
     text-align: left;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
-    transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
     overflow: hidden;
-    color: var(--got-text) !important;
+    color: var(--text) !important;
 }
 
-.Post:hover {
-    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--got-gold-dark);
-    border-color: var(--got-gold-dark) !important;
-    transform: translateY(-2px);
-}
+.Post figure, h5 { margin: 0; }
 
-.Post figure,
-h5 {
-    margin: 0;
-}
-
-/* owner name & date inside card body */
 .Post .card-body span {
-    color: var(--got-text-muted);
+    color: var(--text-muted);
     font-size: 0.85rem;
 }
 
-/* post caption */
 .Post .card-text {
-    color: var(--got-text);
+    color: var(--text);
     font-size: 0.92rem;
     line-height: 1.55;
 }
@@ -39,10 +29,10 @@ h5 {
     align-items: center;
     gap: 0.6rem;
     font-size: 0.9rem;
-    color: var(--got-text-muted);
+    color: var(--text-muted);
     margin-top: 0.5rem;
     padding-top: 0.5rem;
-    border-top: 1px solid var(--got-border);
+    border-top: 1px solid var(--border);
 }
 
 .PostBar span {
@@ -53,21 +43,115 @@ h5 {
 }
 
 .Heart {
-    color: var(--got-red-bright) !important;
+    color: #e0245e !important;
     padding: 4px;
     font-size: 1.2rem;
 }
 
-.Heart:hover {
-    color: var(--got-gold) !important;
-}
+.Heart:hover { color: var(--gold) !important; }
 
 .HeartOutline {
     padding: 4px;
     font-size: 1.2rem;
-    color: var(--got-text-dim) !important;
+    color: var(--text-dim) !important;
 }
 
-.HeartOutline:hover {
-    color: var(--got-red-bright) !important;
+.HeartOutline:hover { color: #e0245e !important; }
+
+/* ── Feed grid card (compact, light) ─────────────────────────────────── */
+
+.FeedCard {
+    background: #ffffff !important;
+    border: 1px solid #e8e8e8 !important;
+    border-radius: 16px !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: box-shadow 0.2s ease, transform 0.18s ease;
+}
+
+.FeedCard:hover {
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13);
+    transform: translateY(-3px);
+}
+
+.FeedImageWrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #f0f0f0;
+    cursor: pointer;
+}
+
+.FeedImage {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+    border-radius: 0 !important;
+    transition: transform 0.3s ease;
+}
+
+.FeedCard:hover .FeedImage {
+    transform: scale(1.04);
+}
+
+.FeedBody {
+    padding: 12px 14px 14px !important;
+    background: #ffffff;
+}
+
+.FeedHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.FeedProfileLink {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.FeedProfileLink:hover {
+    text-decoration: none !important;
+}
+
+.FeedOwner {
+    font-weight: 600;
+    font-size: 0.84rem;
+    color: #1a1a1a;
+}
+
+.FeedCaption {
+    font-size: 0.8rem;
+    color: #555;
+    line-height: 1.4;
+    margin: 2px 0 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.FeedStats {
+    display: flex;
+    gap: 14px;
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 4px;
+}
+
+.FeedStats span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.FeedStats i {
+    font-size: 0.9rem;
+    color: #aaa;
+    padding: 0;
 }

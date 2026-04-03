@@ -1,17 +1,38 @@
 :root {
-  --got-bg:          #080b12;
-  --got-surface:     #0f1220;
-  --got-card:        #13172a;
-  --got-sidebar:     #0a0d1a;
-  --got-border:      #252c47;
-  --got-gold:        #c9a84c;
-  --got-gold-light:  #e8c97a;
-  --got-gold-dark:   #8a6f2d;
-  --got-red:         #9b2335;
-  --got-red-bright:  #c0392b;
-  --got-text:        #e8d5a3;
-  --got-text-muted:  #8a94b8;
-  --got-text-dim:    #454d6e;
+  /* Light theme palette */
+  --bg:            #f5f5f7;
+  --surface:       #ffffff;
+  --card:          #ffffff;
+  --border:        #e4e4e7;
+  --border-light:  #f0f0f2;
+
+  --text:          #1a1a1a;
+  --text-muted:    #555565;
+  --text-dim:      #9999aa;
+
+  --gold:          #b8923a;
+  --gold-light:    #d4a94e;
+  --gold-dark:     #8a6820;
+
+  --red:           #e0245e;
+
+  --sidebar-bg:    #ffffff;
+  --sidebar-w:     240px;
+
+  /* Legacy aliases kept so any remaining var(--got-*) still resolves */
+  --got-bg:        var(--bg);
+  --got-surface:   var(--surface);
+  --got-card:      var(--card);
+  --got-sidebar:   var(--sidebar-bg);
+  --got-border:    var(--border);
+  --got-gold:      var(--gold);
+  --got-gold-light:var(--gold-light);
+  --got-gold-dark: var(--gold-dark);
+  --got-red:       #c0392b;
+  --got-red-bright:var(--red);
+  --got-text:      var(--text);
+  --got-text-muted:var(--text-muted);
+  --got-text-dim:  var(--text-dim);
 }
 
 body {
@@ -21,12 +42,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 15px;
-  color: var(--got-text);
-  background-color: var(--got-bg);
+  color: var(--text);
+  background-color: var(--bg);
 }
 
 #root {
-  margin-left: 240px;
+  margin-left: var(--sidebar-w);
   flex-grow: 1;
   transition: margin-left 0.3s ease;
 }
@@ -44,68 +65,51 @@ code {
 /* ── Bootstrap overrides ────────────────────────────────── */
 
 .card {
-  background-color: var(--got-card) !important;
-  border-color: var(--got-border) !important;
-  color: var(--got-text) !important;
+  background-color: var(--card) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
 }
 
 .form-control {
-  background-color: var(--got-surface) !important;
-  border-color: var(--got-border) !important;
-  color: var(--got-text) !important;
+  background-color: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
 }
 
 .form-control:focus {
-  background-color: var(--got-surface) !important;
-  border-color: var(--got-gold) !important;
-  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.18) !important;
-  color: var(--got-text) !important;
+  background-color: var(--surface) !important;
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px rgba(184, 146, 58, 0.15) !important;
+  color: var(--text) !important;
 }
 
 .form-control::placeholder {
-  color: var(--got-text-dim) !important;
+  color: var(--text-dim) !important;
 }
 
 .form-control option {
-  background-color: var(--got-surface);
-  color: var(--got-text);
+  background-color: var(--surface);
+  color: var(--text);
 }
 
 .dropdown-menu {
-  background-color: var(--got-card) !important;
-  border-color: var(--got-border) !important;
+  background-color: var(--card) !important;
+  border-color: var(--border) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
 }
 
 .dropdown-item {
-  color: var(--got-text) !important;
+  color: var(--text) !important;
 }
 
 .dropdown-item:hover {
-  background-color: rgba(201, 168, 76, 0.12) !important;
-  color: var(--got-gold) !important;
-}
-
-.tooltip-inner {
-  background-color: var(--got-card);
-  color: var(--got-gold);
-  border: 1px solid var(--got-border);
+  background-color: rgba(184, 146, 58, 0.08) !important;
+  color: var(--gold) !important;
 }
 
 /* ── Scrollbar ──────────────────────────────────────────── */
 
-*::-webkit-scrollbar {
-  width: 5px;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-  background: var(--got-border);
-  border-radius: 10px;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background: var(--got-gold-dark);
-}
+*::-webkit-scrollbar { width: 5px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+*::-webkit-scrollbar-thumb:hover { background: var(--gold-dark); }

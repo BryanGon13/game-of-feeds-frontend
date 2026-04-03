@@ -63,7 +63,7 @@ function PostPage() {
                             ))}
                         </div>
                     ) : (
-                        <p className="text-center mt-3" style={{ color: "var(--got-text-dim)", fontSize: "0.9rem" }}>
+                        <p className="text-center mt-3" style={{ color: "var(--text-dim)", fontSize: "0.9rem" }}>
                             No comments yet. Be the first to comment!
                         </p>
                     )}
