@@ -5,8 +5,9 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
 
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/ProfilePage.module.css";
@@ -16,6 +17,8 @@ function ProfilePage() {
     const [profile, setProfile] = useState(null);
     const [posts, setPosts] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
+    const [editBio, setEditBio] = useState(false);
+    const [bioInput, setBioInput] = useState("");
 
     useEffect(() => {
         const handleMount = async () => {
@@ -37,6 +40,16 @@ function ProfilePage() {
         handleMount();
     }, [id]);
 
+    const handleSaveBio = async () => {
+        try {
+            const { data } = await axiosRes.patch(`/profiles/${id}/`, { bio: bioInput });
+            setProfile((prev) => ({ ...prev, bio: data.bio }));
+            setEditBio(false);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <Row className="h-100">
             <Col lg={4} className="py-2 p-0 p-lg-2">
@@ -54,11 +67,35 @@ function ProfilePage() {
                             />
                             <h3 className={styles.Username}>{profile.owner}</h3>
                             <p className={styles.Handle}>@{profile.owner}</p>
-                            <p className={styles.Bio}>
-                                {profile.bio
-                                    ? profile.bio
-                                    : "This user has not added a bio yet."}
-                            </p>
+                            {editBio ? (
+                                <>
+                                    <Form.Control
+                                        as="textarea"
+                                        rows={3}
+                                        value={bioInput}
+                                        onChange={(e) => setBioInput(e.target.value)}
+                                        className="mb-2"
+                                    />
+                                    <div className="d-flex justify-content-center" style={{ gap: "8px" }}>
+                                        <button className="btn btn-sm btn-primary" onClick={handleSaveBio}>Save</button>
+                                        <button className="btn btn-sm btn-secondary" onClick={() => setEditBio(false)}>Cancel</button>
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <p className={styles.Bio}>
+                                        {profile.bio ? profile.bio : "This user has not added a bio yet."}
+                                    </p>
+                                    {profile.is_owner && (
+                                        <button
+                                            className="btn btn-sm btn-outline-secondary"
+                                            onClick={() => { setBioInput(profile.bio || ""); setEditBio(true); }}
+                                        >
+                                            Edit Bio
+                                        </button>
+                                    )}
+                                </>
+                            )}
                         </div>
                     ) : (
                         <Asset spinner />
