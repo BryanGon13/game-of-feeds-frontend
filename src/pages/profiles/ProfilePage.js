@@ -8,12 +8,14 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import Asset from "../../components/Asset";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/ProfilePage.module.css";
 
 function ProfilePage() {
     const { id } = useParams();
+    const setCurrentUser = useSetCurrentUser();
     const [profile, setProfile] = useState(null);
     const [posts, setPosts] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
@@ -58,6 +60,7 @@ function ProfilePage() {
         try {
             const { data } = await axiosRes.patch(`/profiles/${id}/`, formData);
             setProfile((prev) => ({ ...prev, profile_image: data.profile_image }));
+            setCurrentUser((prev) => ({ ...prev, profile_image: data.profile_image }));
             setEditImage(false);
             setImageFile(null);
             setImagePreview(null);
