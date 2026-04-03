@@ -56,9 +56,7 @@ function ProfilePage() {
         const formData = new FormData();
         formData.append("profile_image", imageFile);
         try {
-            const { data } = await axiosRes.patch(`/profiles/${id}/`, formData, {
-                headers: { "Content-Type": "multipart/form-data" },
-            });
+            const { data } = await axiosRes.patch(`/profiles/${id}/`, formData);
             setProfile((prev) => ({ ...prev, profile_image: data.profile_image }));
             setEditImage(false);
             setImageFile(null);
