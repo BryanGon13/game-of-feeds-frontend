@@ -26,7 +26,7 @@ function App() {
           <Switch>
             <Route exact path="/" render={() => <PostsPage message='No results found. Please search for another keyword.' />} />
             <Route exact path="/feed" render={() => <PostsPage message='No results found. Start following new users or search for another keyword.' filter={`owner__followed__owner__profile=${profile_id}&`} />} />
-            <Route exact path="/liked" render={() => <PostsPage message='No results found. Start liking posts or search for another keyword.' filter={`likes__owner__profile=${profile_id}&`} />} />
+            <Route exact path="/liked" render={() => <PostsPage message='No results found. Start liking posts or search for another keyword.' filter={`post_likes__owner__profile=${profile_id}&`} />} />
             <Route exact path="/signup" render={() => <SignUpForm />} />
             <Route exact path="/signin" render={() => <SignInForm />} />
             <Route exact path="/posts/create" render={() => <PostCreateForm />} />
