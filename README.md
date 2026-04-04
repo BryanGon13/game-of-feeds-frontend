@@ -344,7 +344,7 @@ Game of Feeds is a full-stack application consisting of a Django REST API backen
       ```
     - `Procfile` – tells Heroku how to run the app:
       ```
-      web: gunicorn drf_api.wsgi
+      web: gunicorn game_of_feeds_backend.wsgi
       ```
     - Required dependencies:
       ```
@@ -516,6 +516,41 @@ All validation tools reported no critical errors.
 - Errors are displayed clearly to the user
 
 
+### Backend Manual Testing
+
+The backend API was tested manually using the browser, the Django REST Framework browsable API, and live frontend interactions to confirm that requests were processed correctly and that database records were created, updated, and deleted as expected.
+
+| Endpoint / Feature | Test Performed | Expected Result | Result |
+|--------------------|----------------|-----------------|--------|
+| `/posts/` | Create a new post with image and caption | New post is saved and returned by the API | Pass |
+| `/posts/<id>/` | Edit an existing post as owner | Updated post data is saved correctly | Pass |
+| `/posts/<id>/` | Delete a post as owner | Post is removed from the database | Pass |
+| `/comments/` | Create a comment linked to a post | Comment is saved and linked correctly | Pass |
+| `/comments/<id>/` | Edit comment as owner | Updated comment content is returned | Pass |
+| `/comments/<id>/` | Delete comment as owner | Comment is removed successfully | Pass |
+| `/likes/` | Like a post | Like record is created and linked to the post | Pass |
+| `/likes/<id>/` | Unlike a post | Like record is deleted successfully | Pass |
+| `/followers/` | Follow another profile | Follower relationship is created correctly | Pass |
+| `/followers/<id>/` | Unfollow a profile | Follower relationship is removed correctly | Pass |
+| `/profiles/<id>/` | Update bio using PATCH request | Bio is updated and returned correctly | Pass |
+| `/profiles/<id>/` | Update profile image | Image is uploaded to Cloudinary and saved correctly | Pass |
+| `/profiles/<id>/` | Update selected house | House relationship is saved correctly | Pass |
+| `/houses/` | Retrieve available houses | House list is returned correctly | Pass |
+| Authentication | Register a user | New user and profile are created successfully | Pass |
+| Authentication | Log in with valid credentials | Access/refresh tokens are returned successfully | Pass |
+| Permissions | Attempt to edit another user’s content | Request is denied with the correct permission response | Pass |
+
+### Backend Validation and Permission Testing
+
+Additional backend checks were carried out to confirm that serializers, permissions, and request handling worked correctly:
+
+- Blank or invalid submissions were rejected by serializers where appropriate
+- Only authenticated users were able to create protected content
+- Only owners were able to edit or delete their own posts and comments
+- Profile updates were restricted to the profile owner
+- Legacy profile image issues were tested and corrected through database and serializer fixes
+- House data was tested after migration to confirm valid ForeignKey relationships
+
 ---
 
 ### Responsiveness Testing
@@ -542,9 +577,3 @@ On some profile pages the miniature preview images may appear slightly misaligne
 
 - **Personal Support:**  
   Special thanks to my cousin, **Jose Omar Gonzalez**, a full stack developer, who was with me every step of the way, providing guidance, support, and technical expertise.  
-
-
-
-
-
-
