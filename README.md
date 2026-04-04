@@ -22,8 +22,7 @@ The application allows users to create posts, browse a feed of content, explore 
 **Design Rationale:**
 The homepage serves as the main content feed where users can browse posts shared by the various Game of Thrones characters.
 
-The design prioritises simplicity and usability. Posts appear in a clean vertical layout so users can easily scroll through the content. Each post displays the character’s username, image, caption, and the date it was posted. This structure mirrors familiar social media interfaces to ensure users can immediately understand how to interact with the application.
-
+The design prioritises simplicity and usability. Posts are displayed in a structured grid layout, allowing users to browse content quickly and efficiently. Each post displays the character’s username, image, caption, and date, creating a familiar and intuitive social media experience.
 A search bar allows users to quickly locate specific characters by username, while a filter option allows the feed to be organised based on different criteria. These features improve usability and allow users to navigate large amounts of content efficiently.
 
 ### Create Post
@@ -57,6 +56,8 @@ The posts are displayed in a miniature grid layout, allowing users to quickly br
 
 ## Key Features
 
+
+
 - **Character Profiles**  
   - Each Game of Thrones character has their own social media profile where they can share posts and a short bio. This creates the impression that each character is participating in the platform as an influencer.
 
@@ -71,6 +72,72 @@ The posts are displayed in a miniature grid layout, allowing users to quickly br
 
 - **Filtering System**  
   - Posts can be filtered to display specific content types, helping users explore the platform more efficiently.
+
+
+
+## Feature Implementation Details
+
+- **Posts (Full CRUD)**  
+  Users can create, edit, and delete posts. Each post is linked to a user profile and includes an image, caption, and timestamp. The frontend communicates with the Django REST API using Axios, ensuring updates are reflected instantly in the UI.
+
+- **Comments (Full CRUD)**  
+  Users can add, edit, and delete their own comments on posts. Ownership checks are handled in the backend serializer and enforced in the frontend UI.
+
+- **Likes System**  
+  Likes are stored in a separate model linking users to posts. This allows users to like and unlike posts, with real-time updates reflected in the interface.
+
+- **Followers System**  
+  Users can follow and unfollow other profiles. This relationship is managed through a dedicated model to support scalable social interactions.
+
+- **Profile Editing**  
+  Users can update their profile image, bio, and house. Image uploads are handled via Cloudinary, while text-based updates are processed through JSON API requests.
+
+
+## Custom Feature: House System
+
+A custom House model was introduced to extend the functionality beyond the original project walkthrough.
+
+Users can select a house (e.g. Stark, Lannister), which is displayed on their profile. This is implemented using a ForeignKey relationship from the Profile model to the House model.
+
+To safely introduce this feature:
+- a new House model was created
+- a multi-step migration was implemented to convert existing data
+- an API endpoint (`/houses/`) was added to provide selectable options
+- the frontend was updated to allow users to choose a house via a dropdown menu
+
+This feature enhances user identity and reinforces the Game of Thrones theme.
+
+
+## Design Improvements
+
+The application UI was redesigned to improve usability and visual consistency.
+
+- Posts are displayed in a 3x3 grid layout to create a modern social media experience
+- Card-based components are used across the application for consistency
+- Profile actions (edit bio, image, and house) were moved into a dropdown menu to reduce clutter
+- A consistent colour scheme was applied across all pages
+
+These improvements make the application more intuitive and visually engaging.
+
+
+## Bugs & Fixes
+
+Several technical issues were identified and resolved during development:
+
+- **Cloudinary broken images**  
+  Incorrect public IDs caused images to return 404 errors. Fixed by correcting stored values and enforcing valid URLs.
+
+- **Mixed content issue (HTTP vs HTTPS)**  
+  Image URLs were being returned as HTTP, causing browser blocking. Fixed by enforcing HTTPS in backend configuration.
+
+- **Profile image not updating in navbar**  
+  The current user context was not refreshing after updates. Fixed by syncing state after profile updates.
+
+- **Bio updates failing**  
+  PATCH requests with JSON were not being parsed correctly. Fixed by adding JSONParser to the backend view.
+
+- **Database migration failure (house field)**  
+  Converting from CharField to ForeignKey caused integrity errors. Fixed using a safe multi-step migration approach.
 
 
   # User Experience
@@ -150,10 +217,10 @@ As an administrator I want to monitor database content to ensure the platform ru
 
 ## Languages Used
 
-HTML
-CSS
-JavaScript
-Python
+- HTML
+- CSS
+- JavaScript
+- Python
 
 ## Frameworks Used
 
@@ -199,14 +266,33 @@ Heroku – Used to host both the Django API and React application.
 
 Cloudinary – Used to store and serve uploaded images.
 
+## Database Structure
+
+The application uses a relational database structure to manage user interactions:
+
+- A **Profile** is linked to a Django User model and stores additional user information
+- A **Post** is linked to a Profile and contains image-based content
+- A **Comment** is linked to both a Post and a Profile
+- A **Like** connects a user to a post to track engagement
+- A **Follower** model manages relationships between profiles
+- A **House** model is linked to Profile via a ForeignKey to support custom user identity
+
+This structure ensures scalable and efficient handling of social interactions.
+
 
 ## Deployment
 
-### Local Deployment
+Game of Feeds is a full-stack application consisting of a Django REST API backend and a React frontend. Both are deployed separately on Heroku.
 
-1. **Clone the repository:**
+---
+
+### Backend Deployment (Django API)
+
+#### Local Setup
+
+1. **Clone the backend repository:**
     ```bash
-    git clone https://github.com/BryanGon13/game-of-feeds-frontend
+    git clone https://github.com/BryanGon13/game-of-feeds-backend
     ```
 
 2. **Create and activate a virtual environment:**
@@ -237,14 +323,9 @@ Cloudinary – Used to store and serve uploaded images.
     ```bash
     python manage.py runserver
     ```
-    Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) to view the site locally.
+    Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) to access the API locally.
 
----
-
-### Heroku Deployment
-
-Nova Restaurant is deployed on Heroku.  
-Follow these steps to deploy your own instance:
+#### Heroku Deployment
 
 1. **Prerequisites:**
     - A [Heroku](https://www.heroku.com/) account.
@@ -263,9 +344,9 @@ Follow these steps to deploy your own instance:
       ```
     - `Procfile` – tells Heroku how to run the app:
       ```
-      web: gunicorn nova.wsgi
+      web: gunicorn drf_api.wsgi
       ```
-    - Add these dependencies if not already included:
+    - Required dependencies:
       ```
       django-heroku
       dj-database-url
@@ -279,7 +360,7 @@ Follow these steps to deploy your own instance:
 4. **Create the Heroku app:**
     ```bash
     heroku login
-    heroku create your-app-name
+    heroku create your-api-name
     ```
 
 5. **Add Heroku Postgres:**
@@ -288,16 +369,15 @@ Follow these steps to deploy your own instance:
     ```
 
 6. **Set environment variables in Heroku:**
-    In the Heroku dashboard:
-    - Go to **Settings → Reveal Config Vars** and add:
-      ```
-      SECRET_KEY=<your-secret-key>
-      DATABASE_URL=<provided by Heroku Postgres>
-      CLOUDINARY_URL=<your-cloudinary-url>
-      DISABLE_COLLECTSTATIC=1  # Temporarily for first deploy if static files cause errors
-      DEBUG=False
-      ALLOWED_HOSTS=your-app-name.herokuapp.com
-      ```
+    In the Heroku dashboard go to **Settings → Reveal Config Vars** and add:
+    ```
+    SECRET_KEY=<your-secret-key>
+    DATABASE_URL=<provided by Heroku Postgres>
+    CLOUDINARY_URL=<your-cloudinary-url>
+    DEBUG=False
+    ALLOWED_HOSTS=your-api-name.herokuapp.com
+    CLIENT_ORIGIN=https://your-frontend-name.herokuapp.com
+    ```
 
 7. **Deploy to Heroku:**
     ```bash
@@ -309,23 +389,79 @@ Follow these steps to deploy your own instance:
     heroku run python manage.py migrate
     ```
 
-9. **(Optional) Create a superuser for Heroku:**
+9. **(Optional) Create a superuser:**
     ```bash
     heroku run python manage.py createsuperuser
     ```
 
-10. **Collect static files (if disabled earlier):**
+---
+
+### Frontend Deployment (React)
+
+#### Local Setup
+
+1. **Clone the frontend repository:**
     ```bash
-    heroku run python manage.py collectstatic
+    git clone https://github.com/BryanGon13/game-of-feeds-frontend
     ```
 
-11. **Open your live app:**
+2. **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3. **Create a `.env` file in the project root (do not commit this file) with the following variable:**
+    ```
+    REACT_APP_API_URL=http://127.0.0.1:8000
+    ```
+    This tells the React app where to send API requests. In development this points to the local Django server.
+
+4. **Start the development server:**
+    ```bash
+    npm start
+    ```
+    Visit [http://localhost:3000](http://localhost:3000) to view the app locally.
+
+#### Heroku Deployment
+
+The React app is built into a set of static files and served via Heroku.
+
+1. **Prerequisites:**
+    - A [Heroku](https://www.heroku.com/) account.
+    - Git and [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) installed locally.
+    - The backend API must already be deployed and accessible.
+
+2. **Create the Heroku app:**
+    ```bash
+    heroku login
+    heroku create your-frontend-name
+    ```
+
+3. **Add the Node.js buildpack:**
+    ```bash
+    heroku buildpacks:set heroku/nodejs
+    ```
+
+4. **Set the environment variable in Heroku:**
+    In the Heroku dashboard go to **Settings → Reveal Config Vars** and add:
+    ```
+    REACT_APP_API_URL=https://your-api-name.herokuapp.com
+    ```
+    This connects the deployed React app to the live Django API.
+
+5. **Build and deploy:**
+    Heroku automatically runs `npm run build` on deployment, which compiles the React app into optimised static files for production.
+    ```bash
+    git push heroku main
+    ```
+
+6. **Open your live app:**
     ```bash
     heroku open
     ```
     Or visit:
     ```
-    https://your-app-name.herokuapp.com/
+    https://your-frontend-name.herokuapp.com/
     ```
 
 ## Features Left to Implement
@@ -333,8 +469,6 @@ Follow these steps to deploy your own instance:
 Private messaging between users
 
 Support for video uploads
-
-Comment system on posts
 
 Improved profile customisation 
 
@@ -362,24 +496,24 @@ All validation tools reported no critical errors.
 
 ### Manual Testing
 
-Feature
-Test
-Result
-Feed loading
-Open homepage
-Pass
-Create post
-Upload image and caption
-Pass
-Profile view
-View user profile
-Pass
-Like system
-Like and unlike post
-Pass
-Search
-Search username
-Pass
+| Feature | Test | Result |
+|--------|------|--------|
+| Feed loading | Open homepage | Pass |
+| Create post | Upload image + caption | Pass |
+| Edit post | Modify caption/image | Pass |
+| Delete post | Remove post | Pass |
+| Comments | Create, edit, delete | Pass |
+| Profile | Update bio, image, house | Pass |
+| Likes | Like/unlike post | Pass |
+| Search | Search username | Pass |
+
+### Validation Testing
+
+- Empty forms are prevented from submission
+- Post creation requires an image
+- Caption fields cannot be submitted empty
+- Sign-in and sign-up forms disable submission when incomplete
+- Errors are displayed clearly to the user
 
 
 ---
