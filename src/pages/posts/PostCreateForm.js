@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -79,9 +80,9 @@ function PostCreateForm() {
                 />
             </Form.Group>
             {errors?.caption?.map((message, idx) => (
-                <alert variant='warning' key={idx}>
+                <Alert variant='warning' key={idx}>
                     {message}
-                </alert>
+                </Alert>
             ))}
 
 
@@ -92,7 +93,11 @@ function PostCreateForm() {
             >
                 Cancel
             </Button>
-            <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+            <Button
+                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                type="submit"
+                disabled={!image}
+            >
                 Upload
             </Button>
         </div>
@@ -140,9 +145,9 @@ function PostCreateForm() {
                             />
                         </Form.Group>
                         {errors?.image?.map((message, idx) => (
-                            <alert variant='warning' key={idx}>
+                            <Alert variant='warning' key={idx}>
                                 {message}
-                            </alert>
+                            </Alert>
                         ))
                         }
                         <div className="d-md-none">{textFields}</div>

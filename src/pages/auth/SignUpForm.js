@@ -93,7 +93,11 @@ const SignUpForm = () => {
                             <Alert key={idx} variant="warning">{msg}</Alert>
                         ))}
 
-                        <Button className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`} type="submit">
+                        <Button
+                            className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
+                            type="submit"
+                            disabled={!username.trim() || !password1 || !password2}
+                        >
                             Continue
                         </Button>
                         {errors.non_field_errors?.map((msg, idx) => (

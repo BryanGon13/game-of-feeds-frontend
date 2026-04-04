@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -100,9 +101,9 @@ function PostEditForm() {
       </Form.Group>
 
       {errors?.caption?.map((message, idx) => (
-        <alert variant="warning" key={idx}>
+        <Alert variant="warning" key={idx}>
           {message}
-        </alert>
+        </Alert>
       ))}
 
       <Button
@@ -118,6 +119,7 @@ function PostEditForm() {
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
         type="button"
         onClick={handleSubmit}
+        disabled={!caption.trim()}
       >
         Save Changes
       </Button>
@@ -153,9 +155,9 @@ function PostEditForm() {
             </Form.Group>
 
             {errors?.image?.map((message, idx) => (
-              <alert variant="warning" key={idx}>
+              <Alert variant="warning" key={idx}>
                 {message}
-              </alert>
+              </Alert>
             ))}
 
             <div className="d-md-none">{textFields}</div>

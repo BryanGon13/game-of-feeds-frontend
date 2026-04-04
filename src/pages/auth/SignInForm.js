@@ -88,6 +88,7 @@ function SignInForm() {
                         <Button
                             className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
                             type="submit"
+                            disabled={!username.trim() || !password}
                         >
                             Sign In
                         </Button>
