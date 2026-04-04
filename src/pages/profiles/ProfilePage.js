@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
+import Dropdown from "react-bootstrap/Dropdown";
 
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
@@ -19,23 +20,33 @@ function ProfilePage() {
     const [profile, setProfile] = useState(null);
     const [posts, setPosts] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
-    const [editBio, setEditBio] = useState(false);
-    const [bioInput, setBioInput] = useState("");
+
+    // image
     const [editImage, setEditImage] = useState(false);
     const [imageFile, setImageFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const imageInputRef = useRef(null);
 
+    // bio
+    const [editBio, setEditBio] = useState(false);
+    const [bioInput, setBioInput] = useState("");
+
+    // house
+    const [editHouse, setEditHouse] = useState(false);
+    const [houseInput, setHouseInput] = useState("");
+    const [houses, setHouses] = useState([]);
+
     useEffect(() => {
         const handleMount = async () => {
             try {
-                const [{ data: profileData }, { data: postsData }] = await Promise.all([
+                const [{ data: profileData }, { data: postsData }, { data: housesData }] = await Promise.all([
                     axiosReq.get(`/profiles/${id}/`),
                     axiosReq.get(`/posts/?owner__profile=${id}`),
+                    axiosReq.get(`/houses/`),
                 ]);
-
                 setProfile(profileData);
                 setPosts(postsData);
+                setHouses(housesData.results || housesData);
                 setHasLoaded(true);
             } catch (err) {
                 console.log(err);
@@ -46,6 +57,7 @@ function ProfilePage() {
         handleMount();
     }, [id]);
 
+    // ── image ──────────────────────────────────────────────────────────────
     const handleImageChange = (e) => {
         if (e.target.files.length) {
             setImageFile(e.target.files[0]);
@@ -75,11 +87,32 @@ function ProfilePage() {
         setImagePreview(null);
     };
 
+    // ── bio ────────────────────────────────────────────────────────────────
     const handleSaveBio = async () => {
         try {
-            const { data } = await axiosRes.patch(`/profiles/${id}/`, { bio: bioInput });
+            const { data } = await axiosRes.patch(
+                `/profiles/${id}/`,
+                { bio: bioInput },
+                { headers: { "Content-Type": "application/json" } }
+            );
             setProfile((prev) => ({ ...prev, bio: data.bio }));
             setEditBio(false);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    // ── house ──────────────────────────────────────────────────────────────
+    const handleSaveHouse = async () => {
+        try {
+            const payload = houseInput ? { house: parseInt(houseInput) } : { house: null };
+            const { data } = await axiosRes.patch(
+                `/profiles/${id}/`,
+                payload,
+                { headers: { "Content-Type": "application/json" } }
+            );
+            setProfile((prev) => ({ ...prev, house: data.house, house_name: data.house_name }));
+            setEditHouse(false);
         } catch (err) {
             console.log(err);
         }
@@ -91,6 +124,40 @@ function ProfilePage() {
                 <Container className={`${appStyles.Content} ${styles.ProfileCard}`}>
                     {hasLoaded && profile ? (
                         <div className="text-center">
+
+                            {/* ── Owner dropdown menu ── */}
+                            {profile.is_owner && (
+                                <div className={styles.EditMenu}>
+                                    <Dropdown alignRight>
+                                        <Dropdown.Toggle
+                                            as="button"
+                                            className={styles.EditMenuToggle}
+                                            id="profile-edit-menu"
+                                        >
+                                            <i className="fas fa-ellipsis-v" />
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item onClick={() => imageInputRef.current.click()}>
+                                                <i className="fas fa-camera" /> Edit Picture
+                                            </Dropdown.Item>
+                                            <Dropdown.Item onClick={() => { setBioInput(profile.bio || ""); setEditBio(true); setEditHouse(false); }}>
+                                                <i className="fas fa-pen" /> Edit Bio
+                                            </Dropdown.Item>
+                                            <Dropdown.Item onClick={() => { setHouseInput(profile.house || ""); setEditHouse(true); setEditBio(false); }}>
+                                                <i className="fas fa-shield-alt" /> Edit House
+                                            </Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        ref={imageInputRef}
+                                        onChange={handleImageChange}
+                                    />
+                                </div>
+                            )}
+
+                            {/* ── Avatar ── */}
                             <Image
                                 className={styles.ProfileImage}
                                 src={
@@ -101,38 +168,47 @@ function ProfilePage() {
                                 }
                                 roundedCircle
                             />
-                            {profile.is_owner && (
-                                <>
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        ref={imageInputRef}
-                                        onChange={handleImageChange}
-                                    />
-                                    {editImage ? (
-                                        <div className="d-flex justify-content-center mb-2" style={{ gap: "8px" }}>
-                                            <button className="btn btn-sm btn-primary" onClick={handleSaveImage}>Save</button>
-                                            <button className="btn btn-sm btn-secondary" onClick={handleCancelImage}>Cancel</button>
-                                        </div>
-                                    ) : (
-                                        <div className="mb-2">
-                                            <button
-                                                className="btn btn-sm btn-outline-secondary"
-                                                onClick={() => imageInputRef.current.click()}
-                                            >
-                                                Edit Picture
-                                            </button>
-                                        </div>
-                                    )}
-                                </>
+
+                            {/* ── Image save/cancel ── */}
+                            {editImage && (
+                                <div className="d-flex justify-content-center mb-2" style={{ gap: "8px" }}>
+                                    <button className="btn btn-sm btn-primary" onClick={handleSaveImage}>Save</button>
+                                    <button className="btn btn-sm btn-secondary" onClick={handleCancelImage}>Cancel</button>
+                                </div>
                             )}
+
                             <h3 className={styles.Username}>{profile.owner}</h3>
                             <p className={styles.Handle}>@{profile.owner}</p>
-                            {profile.house_name && (
+
+                            {/* ── House display ── */}
+                            {profile.house_name && !editHouse && (
                                 <p className={styles.House}>
                                     <i className="fas fa-shield-alt" /> {profile.house_name}
                                 </p>
                             )}
+
+                            {/* ── House edit ── */}
+                            {editHouse && (
+                                <div className="mb-3">
+                                    <Form.Control
+                                        as="select"
+                                        value={houseInput}
+                                        onChange={(e) => setHouseInput(e.target.value)}
+                                        className="mb-2"
+                                    >
+                                        <option value="">-- No house --</option>
+                                        {houses.map((h) => (
+                                            <option key={h.id} value={h.id}>{h.name}</option>
+                                        ))}
+                                    </Form.Control>
+                                    <div className="d-flex justify-content-center" style={{ gap: "8px" }}>
+                                        <button className="btn btn-sm btn-primary" onClick={handleSaveHouse}>Save</button>
+                                        <button className="btn btn-sm btn-secondary" onClick={() => setEditHouse(false)}>Cancel</button>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* ── Bio display / edit ── */}
                             {editBio ? (
                                 <>
                                     <Form.Control
@@ -148,19 +224,9 @@ function ProfilePage() {
                                     </div>
                                 </>
                             ) : (
-                                <>
-                                    <p className={styles.Bio}>
-                                        {profile.bio ? profile.bio : "This user has not added a bio yet."}
-                                    </p>
-                                    {profile.is_owner && (
-                                        <button
-                                            className="btn btn-sm btn-outline-secondary"
-                                            onClick={() => { setBioInput(profile.bio || ""); setEditBio(true); }}
-                                        >
-                                            Edit Bio
-                                        </button>
-                                    )}
-                                </>
+                                <p className={styles.Bio}>
+                                    {profile.bio ? profile.bio : "This user has not added a bio yet."}
+                                </p>
                             )}
                         </div>
                     ) : (
