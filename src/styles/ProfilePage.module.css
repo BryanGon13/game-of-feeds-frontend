@@ -32,6 +32,22 @@
     margin-bottom: 1rem;
 }
 
+.House {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.House i {
+    font-size: 0.78rem;
+    color: var(--gold);
+    padding: 0;
+    margin-right: 4px;
+}
+
 .Bio {
     font-size: 0.88rem;
     line-height: 1.6;

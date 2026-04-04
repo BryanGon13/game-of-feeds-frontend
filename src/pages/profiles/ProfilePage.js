@@ -128,6 +128,11 @@ function ProfilePage() {
                             )}
                             <h3 className={styles.Username}>{profile.owner}</h3>
                             <p className={styles.Handle}>@{profile.owner}</p>
+                            {profile.house_name && (
+                                <p className={styles.House}>
+                                    <i className="fas fa-shield-alt" /> {profile.house_name}
+                                </p>
+                            )}
                             {editBio ? (
                                 <>
                                     <Form.Control
