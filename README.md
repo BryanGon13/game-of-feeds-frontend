@@ -17,7 +17,7 @@ The application allows users to create posts, browse a feed of content, explore 
 ### Homepage
 
 ![Wireframe Screenshot](./src/assets/feed-page.png)
-![Homepage Screenshot](./src/assets/feed-page-1.png)
+![Homepage Screenshot](./src/assets/Screenshot%202026-04-05%20at%2001.48.32.png)
 
 **Design Rationale:**
 The homepage serves as the main content feed where users can browse posts shared by the various Game of Thrones characters.
@@ -496,16 +496,16 @@ All validation tools reported no critical errors.
 
 ### Manual Testing
 
-| Feature | Test | Result |
-|--------|------|--------|
-| Feed loading | Open homepage | Pass |
-| Create post | Upload image + caption | Pass |
-| Edit post | Modify caption/image | Pass |
-| Delete post | Remove post | Pass |
-| Comments | Create, edit, delete | Pass |
-| Profile | Update bio, image, house | Pass |
-| Likes | Like/unlike post | Pass |
-| Search | Search username | Pass |
+| Feature | Test | Expected Result | Actual Result |
+|--------|------|-----------------|---------------|
+| Feed loading | Open homepage | Feed loads correctly with posts | Pass |
+| Create post | Upload image + caption | Post is created and displayed | Pass |
+| Edit post | Modify caption/image | Post updates correctly | Pass |
+| Delete post | Remove post | Post is removed from feed | Pass |
+| Comments | Create, edit, delete | Comments behave correctly | Pass |
+| Profile | Update bio, image, house | Profile updates correctly | Pass |
+| Likes | Like/unlike post | Like count updates correctly | Pass |
+| Search | Search username | Matching profiles appear | Pass |
 
 ### Validation Testing
 
