@@ -16,7 +16,7 @@ The application allows users to create posts, browse a feed of content, explore 
 
 ### Homepage
 
-![Wireframe Screenshot](./src/assets/feed-page.png)
+![Wireframe Screenshot](./src/assets/Wireframe-home.png)
 ![Homepage Screenshot](./src/assets/Screenshot%202026-04-05%20at%2001.48.32.png)
 
 **Design Rationale:**
@@ -27,8 +27,8 @@ A search bar allows users to quickly locate specific characters by username, whi
 
 ### Create Post
 
-![wireframe Screenshot](./src/assets/cp-wf.png)
-![Menu Page Screenshot](./src/assets/cp.png)
+![wireframe Screenshot](./src/assets/upload-%20WF.png)
+![Create Post Page Screenshot](./src/assets/cp.png)
 
 **Design Rationale:**
 The create post page allows users to upload an image and write a caption for their post.
@@ -39,8 +39,8 @@ This design reflects the project’s goal of creating a simple and accessible po
 
 ### Profile Page
 
-![Wireframe Screenshot](./src/assets/pp-wf.png)
-![Reservations Page Screenshot](./src/assets/pp.png)
+![Wireframe Screenshot](./src/assets/Profile-WF.png)
+![Profile Page Screenshot](./src/assets/Profile-SC.png)
 
 **Design Rationale:**
 Each character has their own profile page where users can view their information and posts.
@@ -224,47 +224,47 @@ As an administrator I want to monitor database content to ensure the platform ru
 
 ## Frameworks Used
 
-React – Frontend application framework used to build the user interface.
+  - React – Frontend application framework used to build the user interface.
 
-Django – Backend web framework used to manage the API and database.
+  - Django – Backend web framework used to manage the API and database.
 
-Django REST Framework – Used to create the RESTful API consumed by the React frontend.
+  - Django REST Framework – Used to create the RESTful API consumed by the React frontend.
 
-Bootstrap – Used for styling and responsive layout components.
+  - Bootstrap – Used for styling and responsive layout components.
 
 ## Databases Used
 
-SQLite – Used during development.
+  - SQLite – Used during development.
 
-PostgreSQL – Used in production through Heroku.
+  - PostgreSQL – Used in production through Heroku.
 
 ## Libraries and Packages Used
 
-Django REST Framework
-Cloudinary
-Gunicorn
-Pillow
-Psycopg2
+  - Django REST Framework
+  - Cloudinary
+  - Gunicorn
+  - Pillow
+  - Psycopg2
 
 React libraries including:
 
-Axios
-React Router
-Bootstrap React Components
+  - Axios
+  - React Router
+  - Bootstrap React Components
 
 
 ## Programmes and Applications Used
 
-Git
-GitHub
-VS Code
-Chrome DevTools
+  - Git
+  - GitHub
+  - VS Code
+  - Chrome DevTools
 
 ## Cloud Application Platforms Used
 
-Heroku – Used to host both the Django API and React application.
+  - Heroku – Used to host both the Django API and React application.
 
-Cloudinary – Used to store and serve uploaded images.
+  - Cloudinary – Used to store and serve uploaded images.
 
 ## Database Structure
 
